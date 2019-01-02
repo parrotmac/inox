@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+
+import { BrowserRouter } from 'react-router-dom';
+
+import NavBar from './components/NavBar';
+import Routes from './containers/Routes';
+
 import './App.css';
-import LoginPage from './pages/LoginPage';
-import NavBar from "./components/NavBar";
 
 class App extends Component {
-    render(): JSX.Element {
-        return (
-            <BrowserRouter>
-                <div className="App">
-                    <NavBar/>
-                    <Switch>
-                        <Route path={"/login"} component={LoginPage as any}/>
-                    </Switch>
-                </div>
-            </BrowserRouter>
-        );
-    }
+
+  public render(): JSX.Element {
+    return (
+      <BrowserRouter>
+        <>
+          <NavBar/>
+          <div className="App">
+            <Routes/>
+          </div>
+        </>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

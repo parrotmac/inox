@@ -1,40 +1,57 @@
-import React, {Component} from 'react'
-import {Link} from "react-router-dom";
+import React, { Component } from 'react';
+
 import {
-    Alignment,
-    Button,
-    Classes,
-    H5,
-    Navbar,
-    NavbarDivider,
-    NavbarGroup,
-    NavbarHeading,
-    Switch,
-} from "@blueprintjs/core";
+  Alignment,
+  Classes,
+  Navbar,
+  NavbarGroup,
+  NavbarHeading,
+} from '@blueprintjs/core';
+import { Link } from 'react-router-dom';
+
+import './NavBar.css';
 
 class NavBar extends Component {
-    render(): JSX.Element {
-        return (
-            <div>
-                <Navbar>
-                    <NavbarGroup align={Alignment.LEFT}>
-                        <NavbarHeading>Blueprint</NavbarHeading>
-                        <NavbarDivider />
+  public render(): JSX.Element {
 
-                <Link className={`${Classes.MINIMAL} ${Classes.BUTTON} ${Classes.iconClass("key")}`} to={"/login"}>
-                    Login
-                </Link>
-                <Link className={`${Classes.MINIMAL} ${Classes.BUTTON} ${Classes.iconClass("home")}`} to={"/"}>
-                    Home
-                </Link>
+    const navLinkClassesWithIcon = (iconName: string) =>
+      `${Classes.MINIMAL} ${Classes.BUTTON} ${Classes.iconClass(iconName)}`;
 
-                        {/*<Button className={Classes.MINIMAL} icon="home" text="Home" />*/}
-                        {/*<Button className={Classes.MINIMAL} icon="document" text="Files" />*/}
-                    </NavbarGroup>
-                </Navbar>
-            </div>
-        )
-    }
+    return (
+      <Navbar className={'NavBar'}>
+        <NavbarGroup align={Alignment.LEFT}>
+          <NavbarHeading>Inox &lt;-&gt; Rusted</NavbarHeading>
+        </NavbarGroup>
+        <NavbarGroup align={Alignment.RIGHT}>
+          <Link
+            className={navLinkClassesWithIcon('heat-grid')}
+            to={'/overview'}>
+            Overview
+          </Link>
+          <Link
+            className={navLinkClassesWithIcon('map')}
+            to={'/location'}>
+            Location
+          </Link>
+          <Link
+            className={navLinkClassesWithIcon('satellite')}
+            to={'/control'}>
+            Control
+          </Link>
+          <Link
+            className={navLinkClassesWithIcon('cog')}
+            to={'/settings'}>
+            Settings
+          </Link>
+          <Link
+            className={navLinkClassesWithIcon('user')}
+            to={'/login'}>
+            Account
+          </Link>
+        </NavbarGroup>
+      </Navbar>
+    );
+  }
 }
 
-export default NavBar
+export default NavBar;
