@@ -1,4 +1,9 @@
+html, body, #root {
+  height: 100%;
+}
+
 body {
+  color: #E1E8ED;
   background-color: #282c34;
   margin: 0;
   padding: 0;
@@ -12,4 +17,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+a, a:link, a:visited {
+  color: #61dafb;
 }

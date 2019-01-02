@@ -1,0 +1,8 @@
+.NavBar {
+    position: absolute;
+    color: #293742;
+}
+
+.NavBar a, .NavBar a:visited, .NavBar a:link {
+    color: #293742;
+}
