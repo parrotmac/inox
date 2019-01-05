@@ -39,5 +39,6 @@
   ],
   "devDependencies": {
     "tslint-consistent-codestyle": "^1.14.1"
-  }
+  },
+  "proxy": "http://localhost:4000"
 }
