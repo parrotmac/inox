@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router';
 
 import LoginPage from '../pages/LoginPage';
 import NotFound from '../pages/NotFound';
+import SettingsPage from '../pages/SettingsPage';
 
 class Routes extends Component {
   public render(): JSX.Element {
@@ -11,6 +12,7 @@ class Routes extends Component {
       <>
         <Switch>
           <Route path={'/login'} component={LoginPage as any}/>
+          <Route path={'/settings'} component={SettingsPage as any}/>
           <Route component={NotFound as any}/>
         </Switch>
       </>
