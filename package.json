@@ -10,20 +10,20 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve",
-    "build": "npm run build-sass && npm run build-ts && npm run tslint && npm run copy-static-assets",
+    "build": "npm run build-react && npm run build-ts && npm run tslint",
     "serve": "node dist/app.js",
     "watch-node": "nodemon dist/app.js",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"React,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run start-react\" \"npm run watch-ts\" \"npm run watch-node\"",
     "test": "jest --forceExit --coverage --verbose",
     "watch-test": "npm run test -- --watchAll",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "build-sass": "node-sass src/public/css/main.scss dist/public/css/main.css",
-    "watch-sass": "node-sass -w src/public/css/main.scss dist/public/css/main.css",
+    "build-react": "cd fe && npm run build",
+    "start-react":  "cd fe && npm run start",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect dist/app.js",
-    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\""
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"React,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run start-react\" \"npm run watch-ts\" \"npm run serve-debug\""
   },
   "dependencies": {
     "async": "^2.6.0",
@@ -82,7 +82,6 @@
     "chai": "^4.1.2",
     "concurrently": "^3.5.1",
     "jest": "^22.0.4",
-    "node-sass": "^4.7.2",
     "nodemon": "^1.13.0",
     "shelljs": "^0.8.1",
     "supertest": "^3.0.0",
