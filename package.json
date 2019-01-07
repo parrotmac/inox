@@ -19,7 +19,7 @@
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "build-react": "cd fe && npm run build",
-    "start-react":  "cd fe && npm run start",
+    "start-react": "cd fe && npm run start",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect dist/app.js",
