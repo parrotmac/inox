@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 import {
   Alignment,
@@ -6,10 +6,10 @@ import {
   Navbar,
   NavbarGroup,
   NavbarHeading,
-} from '@blueprintjs/core';
-import { Link } from 'react-router-dom';
+} from "@blueprintjs/core";
+import { Link } from "react-router-dom";
 
-import './NavBar.css';
+import "./NavBar.css";
 
 class NavBar extends Component {
   public render(): JSX.Element {
@@ -18,34 +18,34 @@ class NavBar extends Component {
       `${Classes.MINIMAL} ${Classes.BUTTON} ${Classes.iconClass(iconName)}`;
 
     return (
-      <Navbar className={'NavBar'}>
+      <Navbar className={"NavBar"}>
         <NavbarGroup align={Alignment.LEFT}>
           <NavbarHeading>Inox &lt;-&gt; Rusted</NavbarHeading>
         </NavbarGroup>
         <NavbarGroup align={Alignment.RIGHT}>
           <Link
-            className={navLinkClassesWithIcon('heat-grid')}
-            to={'/overview'}>
+            className={navLinkClassesWithIcon("heat-grid")}
+            to={"/overview"}>
             Overview
           </Link>
           <Link
-            className={navLinkClassesWithIcon('map')}
-            to={'/location'}>
+            className={navLinkClassesWithIcon("map")}
+            to={"/location"}>
             Location
           </Link>
           <Link
-            className={navLinkClassesWithIcon('satellite')}
-            to={'/control'}>
+            className={navLinkClassesWithIcon("satellite")}
+            to={"/control"}>
             Control
           </Link>
           <Link
-            className={navLinkClassesWithIcon('cog')}
-            to={'/settings'}>
+            className={navLinkClassesWithIcon("cog")}
+            to={"/settings"}>
             Settings
           </Link>
           <Link
-            className={navLinkClassesWithIcon('user')}
-            to={'/login'}>
+            className={navLinkClassesWithIcon("user")}
+            to={"/login"}>
             Account
           </Link>
         </NavbarGroup>

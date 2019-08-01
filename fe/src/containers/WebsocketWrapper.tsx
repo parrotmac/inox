@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface IWebsocketProps {
   url: string
@@ -54,8 +54,9 @@ class WebsocketWrapper extends React.Component<IWebsocketProps, IWebsocketState>
     const websocket = this.state.ws;
 
     websocket.onopen = () => {
-      this.logging('Websocket connected');
-      if (typeof this.props.onOpen === 'function') this.props.onOpen();
+      this.logging("Websocket connected");
+      // tslint:disable-next-line:brace-style
+      if (typeof this.props.onOpen === "function") { this.props.onOpen(); }
     };
 
     websocket.onmessage = (evt) => {
@@ -63,8 +64,8 @@ class WebsocketWrapper extends React.Component<IWebsocketProps, IWebsocketState>
     };
 
     websocket.onclose = () => {
-      this.logging('Websocket disconnected');
-      if (typeof this.props.onClose === 'function') {
+      this.logging("Websocket disconnected");
+      if (typeof this.props.onClose === "function") {
         this.props.onClose();
       }
       if (this.shouldReconnect) {

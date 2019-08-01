@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   Button,
@@ -7,9 +7,9 @@ import {
   Intent,
   Spinner,
   Tooltip,
-} from '@blueprintjs/core';
+} from "@blueprintjs/core";
 
-import './LoginForm.css';
+import "./LoginForm.css";
 
 export interface IInputGroupExampleState {
   disabled: boolean;
@@ -23,11 +23,11 @@ export interface IInputGroupExampleState {
 class LoginForm extends React.Component {
   public state: IInputGroupExampleState = {
     disabled: false,
-    filterValue: '',
+    filterValue: "",
     large: false,
     showPassword: false,
     small: false,
-    tagValue: '',
+    tagValue: "",
   };
 
   private handleLockClick = () => this.setState({ showPassword: !this.state.showPassword });
@@ -39,10 +39,10 @@ class LoginForm extends React.Component {
     const maybeSpinner = filterValue ? <Spinner size={Icon.SIZE_STANDARD} /> : undefined;
 
     const lockButton = (
-      <Tooltip content={`${showPassword ? 'Hide' : 'Show'} Password`} disabled={disabled}>
+      <Tooltip content={`${showPassword ? "Hide" : "Show"} Password`} disabled={disabled}>
         <Button
           disabled={disabled}
-          icon={showPassword ? 'unlock' : 'lock'}
+          icon={showPassword ? "unlock" : "lock"}
           intent={Intent.WARNING}
           minimal={true}
           onClick={this.handleLockClick}
@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
     );
 
     return (
-      <div className={'LoginForm'}>
+      <div className={"LoginForm"}>
         <InputGroup
           large={true}
           leftIcon="user"
@@ -62,10 +62,10 @@ class LoginForm extends React.Component {
         />
         <InputGroup
           large={true}
-          leftIcon={'key'}
+          leftIcon={"key"}
           placeholder="**********"
           rightElement={lockButton}
-          type={showPassword ? 'text' : 'password'}
+          type={showPassword ? "text" : "password"}
         />
         <Button large={true} rightIcon="arrow-right" intent="success" text="Login" />
       </div>

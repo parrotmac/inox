@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
 
-import NavBar from './components/NavBar';
-import Routes from './containers/Routes';
+import NavBar from "./components/NavBar";
+import Routes from "./containers/Routes";
 
-import './App.css';
+import "./App.css";
 
 class App extends Component {
 

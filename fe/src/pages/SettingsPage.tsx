@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Button, Card, Divider, Elevation, H1, H5 } from '@blueprintjs/core';
+import { Button, Card, Divider, Elevation, H1, H5 } from "@blueprintjs/core";
 
-import DebugMessageDisplay from '../components/DebugMessageDisplay';
-import './SettingsPage.css';
+import DebugMessageDisplay from "../components/DebugMessageDisplay";
+import "./SettingsPage.css";
 
 class SettingsPage extends Component {
   public render(): JSX.Element {
 
     const dummyData = [
       {
-        topic: 'evt/web/shits/giggles',
+        topic: "evt/web/shits/giggles",
         payload: {
-          status: 'laugh',
+          status: "laugh",
         },
       },
       {
-        topic: 'evt/web/door/status',
+        topic: "evt/web/door/status",
         payload: {
-          status: 'locked',
+          status: "locked",
         },
       },
       {
-        topic: 'evt/web/lights',
+        topic: "evt/web/lights",
         payload: {
-          bool: 'true',
+          bool: "true",
         },
       },
     ];
 
     return (
-      <div className={'SettingsPage'}>
+      <div className={"SettingsPage"}>
         <Card interactive={true} elevation={Elevation.TWO}>
           <H5>Device Settings</H5>
           <Button
-            className={'SettingsPageButton'}
-            style={{ width: '800px' }}
+            className={"SettingsPageButton"}
+            style={{ width: "800px" }}
             text="customized button" />
         </Card>
         <Divider/>

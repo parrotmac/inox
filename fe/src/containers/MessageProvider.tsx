@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class MessageProvider extends Component {
   public render(): JSX.Element {
     return (
-      <div className={'MessageProvider'}>
+      <div className={"MessageProvider"}>
         MessageProvider
       </div>
     );
