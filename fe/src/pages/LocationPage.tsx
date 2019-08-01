@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import ReactMapGL, { FullscreenControl, GeolocateControl, Marker, NavigationControl, Popup } from 'react-map-gl';
-import WebsocketWrapper from '../containers/WebsocketWrapper';
-import './LocationPage.css';
+import React, { Component } from "react";
+import ReactMapGL, { FullscreenControl, GeolocateControl, Marker, NavigationControl, Popup } from "react-map-gl";
+import WebsocketWrapper from "../containers/WebsocketWrapper";
+import "./LocationPage.css";
 
 interface ILatLng {
   lat: number
@@ -126,14 +126,14 @@ export default class LocationPage extends Component<{}, IAppState> {
       },
       useDefaultViewport: true,
       viewport: initialViewport,
-      deviceName: 'Unknown',
+      deviceName: "Unknown",
     };
   }
 
   private maybeUpdateStatePosition = (data: string): void => {
     const satelliteData = JSON.parse(data) as ISKYReport | ITPVReport;
     switch (satelliteData.class) {
-      case 'TPV':
+      case "TPV":
         const { lat, lon } = satelliteData as ITPVReport;
         const newPosition: ILatLng = {
           lat,
@@ -143,7 +143,7 @@ export default class LocationPage extends Component<{}, IAppState> {
           gpsReportedPosition: newPosition,
         });
         break;
-      case 'SKY':
+      case "SKY":
         const { device } = satelliteData as ISKYReport; // Also present in TPV
         this.setState({
           deviceName: device,
@@ -151,20 +151,20 @@ export default class LocationPage extends Component<{}, IAppState> {
         break;
       default:
         const parsedData = JSON.parse(data);
-        if (parsedData.topic.startsWith('evt/') && parsedData.topic.endsWith('/cell/location')) {
+        if (parsedData.topic.startsWith("evt/") && parsedData.topic.endsWith("/cell/location")) {
           // tslint:disable-next-line:no-shadowed-variable
           const { lat, lon } = parsedData.payload;
           // tslint:disable-next-line:no-console
-          console.log('cell data location (from lookup)', lat, lon);
+          console.log("cell data location (from lookup)", lat, lon);
           this.setState({
             primaryCellLocation: {
               lat,
               lng: lon,
             },
           });
-        } else if (parsedData.topic.startsWith('evt/') && parsedData.topic.endsWith('/cell')) {
+        } else if (parsedData.topic.startsWith("evt/") && parsedData.topic.endsWith("/cell")) {
           // tslint:disable-next-line:no-console
-          console.log('cell data', parsedData.payload);
+          console.log("cell data", parsedData.payload);
           if (parsedData.payload.location !== null) {
             const cellData = parsedData.payload.location as ICellLocData;
             this.setState({
@@ -174,13 +174,13 @@ export default class LocationPage extends Component<{}, IAppState> {
             });
           }
         } else if (
-          parsedData.topic.startsWith('evt/') &&
-          parsedData.topic.endsWith('/cell/cell-location')
+          parsedData.topic.startsWith("evt/") &&
+          parsedData.topic.endsWith("/cell/cell-location")
         ) {
           // tslint:disable-next-line:no-shadowed-variable
           const { lon, lat } = JSON.parse(data).payload;
           // tslint:disable-next-line:no-console
-          console.warn('cell-location', lat, lon, data);
+          console.warn("cell-location", lat, lon, data);
           this.setState({
             modemLocationReport: {
               position: {
@@ -191,7 +191,7 @@ export default class LocationPage extends Component<{}, IAppState> {
           });
         } else {
           // tslint:disable-next-line:no-console
-          console.warn('unrecognized data', satelliteData);
+          console.warn("unrecognized data", satelliteData);
 
           // Experimental
           const gpsdData = JSON.parse(data) as ILol;
@@ -235,7 +235,7 @@ export default class LocationPage extends Component<{}, IAppState> {
     if (primaryCellLocation) {
       markers.push({
         position: primaryCellLocation,
-        text: 'Primary Cell Tower',
+        text: "Primary Cell Tower",
       });
     }
 
@@ -249,35 +249,37 @@ export default class LocationPage extends Component<{}, IAppState> {
     if (modemLocationReport.position) {
       markers.push({
         position: modemLocationReport.position,
-        text: 'Modem-reported location',
+        text: "Modem-reported location",
       });
     }
 
+    console.log(process.env);
+
     return (
       <>
-        <div className={'map-wrapper'}>
+        <div className={"map-wrapper"}>
           <ReactMapGL
-            height={'100%'}
-            width={'100%'}
+            height={"100%"}
+            width={"100%"}
             latitude={viewport.latitude}
             longitude={viewport.longitude}
             zoom={viewport.zoom}
             mapStyle={"mapbox://styles/mapbox/dark-v10"}
-            mapboxApiAccessToken={'pk.eyJ1IjoiaXNhYWNwIiwiYSI6ImNqeXM3Y3NmOTBqMTAzY3RucGxwZnMybWMifQ.Okxm9X6xmknqG5fX8t7XJQ'}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_TOKEN}
             onViewportChange={(v) => this.setState({
               viewport: v,
             })}
           >
-            <div style={{ position: 'absolute', right: 0, display: "flex", flexDirection: "column" }}>
-              <div className={'mapbox-control mapbox-control-top'}>
+            <div style={{ position: "absolute", right: 0, display: "flex", flexDirection: "column" }}>
+              <div className={"mapbox-control mapbox-control-top"}>
                 <NavigationControl />
               </div>
-              <div className={'mapbox-control'}>
-              <FullscreenControl container={document.querySelector('body')}/>
+              <div className={"mapbox-control"}>
+              <FullscreenControl container={document.querySelector("body")}/>
               </div>
-              <div className={'mapbox-control'}>
+              <div className={"mapbox-control"}>
               <GeolocateControl
-                positionOptions={{enableHighAccuracy: true}}
+                positionOptions={{ enableHighAccuracy: true }}
                 trackUserLocation={true}
               />
               </div>
@@ -290,14 +292,14 @@ export default class LocationPage extends Component<{}, IAppState> {
               longitude={-111.8}
               closeButton={true}
               closeOnClick={false}
-              onClose={() => console.log('close')}
+              onClose={() => console.log("close")}
               anchor="bottom-left" >
               <div>Jerp</div>
             </Popup>
           </ReactMapGL>
         </div>
         <WebsocketWrapper
-          url={'ws://localhost:4000'}
+          url={"ws://localhost:4000"}
           reconnect={true}
           onMessage={this.maybeUpdateStatePosition}
         />
