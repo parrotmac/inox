@@ -12,7 +12,7 @@ import mongoose from "mongoose";
 import passport from "passport";
 import expressValidator from "express-validator";
 import bluebird from "bluebird";
-import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
+import { MONGODB_URI, SESSION_SECRET, SORACOM_AUTH } from "./util/secrets";
 import * as WebSocket from "ws";
 import errorHandler from "errorhandler";
 
@@ -23,11 +23,11 @@ const MongoStore = mongo(session);
 dotenv.config({ path: ".env.example" });
 
 // API keys and Passport configuration
-import * as passportConfig from "./config/passport";
 import apiRouter from "./routers/api";
 import reactRouter from "./routers/react";
 import * as http from "http";
 import MessageBinder from "./util/messageBinder";
+import Soracom, { ISoracomAuth } from "./util/soracom";
 
 // Create Express server
 const app = express();

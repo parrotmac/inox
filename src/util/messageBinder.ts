@@ -3,6 +3,8 @@ import MqttWrapper from "../mqtt";
 import { OnMessageCallback } from "mqtt";
 import logger from "./logger";
 import { Server } from "ws";
+import Soracom, { ISoracomAuth, ISoracomSession } from "./soracom";
+import { SORACOM_AUTH } from "./secrets";
 
 class WebsocketClient {
   websocket: WebSocket;
@@ -12,6 +14,9 @@ class WebsocketClient {
     this.idToken = idToken;
   }
 }
+
+// Setup Soracom API
+const soracom = new Soracom((JSON.parse(SORACOM_AUTH) as ISoracomAuth));
 
 class MessageBinder {
   private mqtt: MqttWrapper;
@@ -47,6 +52,55 @@ class MessageBinder {
     try {
       payload = JSON.parse(body.toString());
     } catch (e) {}
+
+    if (topic.startsWith("evt/") && topic.endsWith("/cell")) {
+      const data = JSON.parse(body.toString());
+      const {
+        sim: {
+          imsi
+        },
+        location
+      } = data;
+
+      if (location) {
+       // Use modem's report
+      const {
+        cid,
+        lac,
+        mcc,
+        mnc,
+        // tac,
+      } = location;
+
+        soracom.getCellLocations(mcc, mnc, lac, cid).then(res => {
+          console.warn("cell-location data", res);
+          this.broadcastToAllWebsockets(JSON.stringify({
+            "topic": `${topic}/cell-location`,
+            "payload": res,
+          }));
+        }).catch(console.error);
+
+      } else {
+        // Lookup session in Soracom
+
+        soracom.listSessionEvents(imsi).then((res: Array<ISoracomSession>) => {
+          if (res.length > 0) {
+            this.broadcastToAllWebsockets(JSON.stringify({
+              "topic": `${topic}/latest-session`,
+              "payload": res,
+            }));
+            const cellData = res[0];
+            soracom.getCellLocations(cellData.cell.mcc, cellData.cell.mnc, cellData.cell.tac, cellData.cell.eci).then(res => {
+              this.broadcastToAllWebsockets(JSON.stringify({
+                "topic": `${topic}/location`,
+                "payload": res,
+              }));
+            }).catch(console.error);
+          }
+        });
+      }
+    }
+
     this.broadcastToAllWebsockets(JSON.stringify({
       "topic": topic,
       "payload": payload,

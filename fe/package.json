@@ -3,23 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@blueprintjs/core": "^3.10.0",
-    "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.18",
-    "@types/react": "^16.7.18",
-    "@types/react-dom": "^16.0.11",
-    "@types/react-router-dom": "^4.3.1",
-    "npm": "^6.5.0",
-    "react": "^16.7.0",
-    "react-aux": "^1.1.0",
-    "react-dom": "^16.7.0",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.2",
-    "tslint": "^5.12.0",
+    "@blueprintjs/core": "^3.17.1",
+    "leaflet": "^1.5.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-leaflet": "^2.4.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "tslint": "^5.18.0",
     "tslint-eslint-rules": "^5.4.0",
-    "tslint-react": "^3.6.0",
-    "typescript": "^3.2.2"
+    "tslint-react": "^4.0.0",
+    "typescript": "3.5.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,14 +26,26 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "tslint-consistent-codestyle": "^1.14.1"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "proxy": "http://localhost:4000"
+  "devDependencies": {
+    "@types/jest": "24.0.15",
+    "@types/leaflet": "^1.5.0",
+    "@types/node": "12.6.8",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.4",
+    "@types/react-leaflet": "^2.2.1",
+    "@types/react-router-dom": "^4.3.4",
+    "tslint-consistent-codestyle": "^1.15.1"
+  }
 }
