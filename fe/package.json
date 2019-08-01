@@ -6,7 +6,6 @@
     "@blueprintjs/core": "^3.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-leaflet": "^2.4.0",
     "react-map-gl": "^5.0.7",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
@@ -43,7 +42,6 @@
     "@types/node": "12.6.8",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
-    "@types/react-leaflet": "^2.2.1",
     "@types/react-map-gl": "^5.0.0",
     "@types/react-router-dom": "^4.3.4",
     "tslint-consistent-codestyle": "^1.15.1"
