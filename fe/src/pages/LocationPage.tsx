@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
-import { Viewport } from 'react-leaflet';
-import MapViewer, { ILatLng } from '../components/MapViewer';
+import ReactMapGL, { FullscreenControl, GeolocateControl, Marker, NavigationControl, Popup } from 'react-map-gl';
 import WebsocketWrapper from '../containers/WebsocketWrapper';
 import './LocationPage.css';
+
+interface ILatLng {
+  lat: number
+  lng: number
+}
+
+interface IViewport {
+  width?: number
+  height?: number
+  latitude: number
+  longitude: number
+  zoom: number
+}
 
 interface IAppState {
   gpsReportedPosition?: ILatLng;
@@ -12,7 +24,7 @@ interface IAppState {
     position?: ILatLng,
     cellLocData?: ICellLocData,
   },
-  viewport: Viewport;
+  viewport: IViewport;
   deviceName: string
 }
 
@@ -93,9 +105,10 @@ interface ICellLocData {
   tac: string
 }
 
-const initialViewport: Viewport = {
-  center: [0, 0],
-  zoom: 15,
+const initialViewport: IViewport = {
+  latitude: 40.488203,
+  longitude: -111.820729,
+  zoom: 10,
 };
 
 export default class LocationPage extends Component<{}, IAppState> {
@@ -198,7 +211,7 @@ export default class LocationPage extends Component<{}, IAppState> {
     }
   };
 
-  private onViewportUpdated = (viewport: Viewport): void => {
+  private onViewportUpdated = (viewport: IViewport): void => {
     this.setState({
       useDefaultViewport: false,
       viewport,
@@ -211,13 +224,11 @@ export default class LocationPage extends Component<{}, IAppState> {
     const {
       gpsReportedPosition,
       primaryCellLocation,
-      useDefaultViewport,
+      // useDefaultViewport,
       deviceName,
       modemLocationReport,
+      viewport,
     } = this.state;
-
-    // tslint:disable-next-line
-    let viewport: Viewport | undefined = initialViewport;
 
     const markers: Array<{position: ILatLng, text: string}> = [];
 
@@ -233,11 +244,6 @@ export default class LocationPage extends Component<{}, IAppState> {
         position: gpsReportedPosition,
         text: deviceName,
       });
-
-      viewport = {
-        center: [gpsReportedPosition.lat, gpsReportedPosition.lng],
-        zoom: initialViewport.zoom,
-      };
     }
 
     if (modemLocationReport.position) {
@@ -249,12 +255,46 @@ export default class LocationPage extends Component<{}, IAppState> {
 
     return (
       <>
-        <div className={'leaflet-wrapper'}>
-          <MapViewer
-            markers={markers}
-            viewport={useDefaultViewport ? viewport : undefined}
-            onViewportChange={this.onViewportUpdated}
-          />
+        <div className={'map-wrapper'}>
+          <ReactMapGL
+            height={'100%'}
+            width={'100%'}
+            latitude={viewport.latitude}
+            longitude={viewport.longitude}
+            zoom={viewport.zoom}
+            mapStyle={"mapbox://styles/mapbox/dark-v10"}
+            mapboxApiAccessToken={'pk.eyJ1IjoiaXNhYWNwIiwiYSI6ImNqeXM3Y3NmOTBqMTAzY3RucGxwZnMybWMifQ.Okxm9X6xmknqG5fX8t7XJQ'}
+            onViewportChange={(v) => this.setState({
+              viewport: v,
+            })}
+          >
+            <div style={{ position: 'absolute', right: 0, display: "flex", flexDirection: "column" }}>
+              <div className={'mapbox-control mapbox-control-top'}>
+                <NavigationControl />
+              </div>
+              <div className={'mapbox-control'}>
+              <FullscreenControl container={document.querySelector('body')}/>
+              </div>
+              <div className={'mapbox-control'}>
+              <GeolocateControl
+                positionOptions={{enableHighAccuracy: true}}
+                trackUserLocation={true}
+              />
+              </div>
+            </div>
+            <Marker latitude={40.750} longitude={-111.8} offsetLeft={-20} offsetTop={-10}>
+                <img src="http://localhost:3000/jeep.ico" />
+            </Marker>
+            <Popup
+              latitude={40.750}
+              longitude={-111.8}
+              closeButton={true}
+              closeOnClick={false}
+              onClose={() => console.log('close')}
+              anchor="bottom-left" >
+              <div>Jerp</div>
+            </Popup>
+          </ReactMapGL>
         </div>
         <WebsocketWrapper
           url={'ws://localhost:4000'}

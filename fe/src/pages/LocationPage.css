@@ -1,11 +1,16 @@
-.leaflet-wrapper {
+.map-wrapper {
     height: 100%;
     width: 100%;
     position: relative;
 }
 
-.leaflet-container {
-    height: 100%;
-    width: 100%;
-    position: absolute;
+
+.mapbox-control.mapbox-control-top {
+    /* Maybe some padding is ok :) */
+    /*margin-top: 0;*/
 }
+
+.mapbox-control {
+    margin: 5px 5px 0 0;
+}
+
