@@ -95,7 +95,7 @@ export let postSignup = (req: Request, res: Response, next: NextFunction) => {
   const user = new User({
     email: req.body.email,
     password: req.body.password
-  });
+  } as any);
 
   User.findOne({ email: req.body.email }, (err, existingUser) => {
     if (err) { return next(err); }
@@ -103,7 +103,7 @@ export let postSignup = (req: Request, res: Response, next: NextFunction) => {
       req.flash("errors", { msg: "Account with that email address already exists." });
       return res.redirect("/signup");
     }
-    user.save((err) => {
+    user.save((err: Error) => {
       if (err) { return next(err); }
       req.logIn(user, (err) => {
         if (err) {
