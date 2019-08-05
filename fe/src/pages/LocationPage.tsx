@@ -253,8 +253,6 @@ export default class LocationPage extends Component<{}, IAppState> {
       });
     }
 
-    console.log(process.env);
-
     return (
       <>
         <div className={"map-wrapper"}>
@@ -284,7 +282,7 @@ export default class LocationPage extends Component<{}, IAppState> {
               />
               </div>
             </div>
-            <Marker latitude={40.750} longitude={-111.8} offsetLeft={-20} offsetTop={-10}>
+            <Marker latitude={40.750} longitude={-111.8} offsetLeft={0} offsetTop={0}>
                 <img src="http://localhost:3000/jeep.ico" />
             </Marker>
             <Popup
@@ -299,7 +297,7 @@ export default class LocationPage extends Component<{}, IAppState> {
           </ReactMapGL>
         </div>
         <WebsocketWrapper
-          url={"ws://localhost:4000"}
+          url={process.env.NODE_ENV === "production" ? `wss://${window.location.host}` : "ws://localhost:4000"}
           reconnect={true}
           onMessage={this.maybeUpdateStatePosition}
         />
