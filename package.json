@@ -51,7 +51,7 @@
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "winston": "^2.4.0",
-    "ws": "^6.1.2"
+    "ws": "^7.4.6"
   },
   "devDependencies": {
     "@types/async": "^2.0.45",
