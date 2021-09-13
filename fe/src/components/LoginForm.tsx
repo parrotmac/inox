@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
 
   private handleLockClick = () => this.setState({ showPassword: !this.state.showPassword });
 
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
 
     const { disabled, filterValue, showPassword } = this.state;
 

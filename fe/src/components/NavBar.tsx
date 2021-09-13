@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import "./NavBar.css";
 
 class NavBar extends Component {
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
 
     const navLinkClassesWithIcon = (iconName: string) =>
       `${Classes.MINIMAL} ${Classes.BUTTON} ${Classes.iconClass(iconName)}`;

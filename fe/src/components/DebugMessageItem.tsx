@@ -6,7 +6,7 @@ interface IProps {
 }
 
 class DebugMessageItem extends Component<IProps> {
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     const { topic, payload } = this.props;
     return (
       <div className={"DebugMessageItem"}>

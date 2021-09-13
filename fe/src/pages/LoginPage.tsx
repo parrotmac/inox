@@ -6,7 +6,7 @@ import "./LoginPage.css";
 
 class LoginPage extends React.Component {
 
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     return (
       <div className={"LoginPage"}>
         <h1>The Rusted Project</h1>

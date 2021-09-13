@@ -2,7 +2,7 @@ import { Card } from "@blueprintjs/core";
 import React, { Component } from "react";
 
 class NotFound extends Component {
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     return (
       <Card className={"NotFound"} style={{ color: "#293742" }}>
         <code style={{ fontSize: "32px" }}>404</code>

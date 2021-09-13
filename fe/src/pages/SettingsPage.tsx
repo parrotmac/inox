@@ -6,7 +6,7 @@ import DebugMessageDisplay from "../components/DebugMessageDisplay";
 import "./SettingsPage.css";
 
 class SettingsPage extends Component {
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
 
     const dummyData = [
       {
