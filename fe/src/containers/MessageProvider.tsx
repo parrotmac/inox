@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class MessageProvider extends Component {
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     return (
       <div className={"MessageProvider"}>
         MessageProvider

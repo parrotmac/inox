@@ -9,7 +9,7 @@ import "./App.css";
 
 class App extends Component {
 
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     return (
       <BrowserRouter>
         <>

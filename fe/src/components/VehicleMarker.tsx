@@ -8,7 +8,7 @@ interface IVehicleMarkerProps {
 }
 
 export default class VehicleMarker extends Component<IVehicleMarkerProps> {
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     return (
       <div>Vehicle Marker</div>
     );

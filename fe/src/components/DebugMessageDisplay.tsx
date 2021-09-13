@@ -6,7 +6,7 @@ interface IProps {
 }
 
 class DebugMessageDisplay extends Component<IProps> {
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
 
     const messageList = this.props.messageList;
     return (

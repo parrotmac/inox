@@ -218,7 +218,7 @@ export default class LocationPage extends Component<{}, IAppState> {
     });
   };
 
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     // tslint:disable-next-line:no-console
     console.log(this.state.gpsReportedPosition);
     const {
@@ -264,7 +264,7 @@ export default class LocationPage extends Component<{}, IAppState> {
             zoom={viewport.zoom}
             mapStyle={"mapbox://styles/mapbox/dark-v10"}
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_TOKEN}
-            onViewportChange={(v) => this.setState({
+            onViewportChange={(v: any) => this.setState({
               viewport: v,
             })}
           >
@@ -273,7 +273,7 @@ export default class LocationPage extends Component<{}, IAppState> {
                 <NavigationControl />
               </div>
               <div className={"mapbox-control"}>
-              <FullscreenControl container={document.querySelector("body")}/>
+              <FullscreenControl container={document.querySelector("body") || undefined}/>
               </div>
               <div className={"mapbox-control"}>
               <GeolocateControl

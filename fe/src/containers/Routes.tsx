@@ -8,7 +8,7 @@ import NotFound from "../pages/NotFound";
 import SettingsPage from "../pages/SettingsPage";
 
 class Routes extends Component {
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     return (
       <>
         <Switch>
