@@ -44,7 +44,7 @@
     "mongoose": "^5.7.5",
     "mqtt": "^2.18.8",
     "node-fetch": "^2.6.1",
-    "nodemailer": "^4.4.1",
+    "nodemailer": "^6.4.16",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pug": "^3.0.1",
