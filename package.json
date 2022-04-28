@@ -26,7 +26,7 @@
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"React,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run start-react\" \"npm run watch-ts\" \"npm run serve-debug\""
   },
   "dependencies": {
-    "async": "^2.6.0",
+    "async": "^2.6.4",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
