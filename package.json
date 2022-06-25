@@ -43,7 +43,7 @@
     "lusca": "^1.5.2",
     "mongoose": "^5.7.5",
     "mqtt": "^2.18.8",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "nodemailer": "^4.4.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
