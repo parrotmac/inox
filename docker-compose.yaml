@@ -1,0 +1,44 @@
+version: '2'
+services:
+  inox:
+    image: thingregistry.com/inox
+    restart: always
+    expose:
+    - "4000"
+    environment:
+    - VIRTUAL_HOST=${API_VIRTUAL_HOST}
+    - LETSENCRYPT_HOST=${API_LETSENCRYPT_HOST}
+    - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    - SESSION_SECRET=${SESSION_SECRET}
+    - SORACOM_AUTH=${SORACOM_AUTH}
+    - MONGODB_URI=mongodb://mongo:27017
+    - NODE_ENV=production
+    networks:
+    - heylex-proxy
+    depends_on:
+    - mongo
+  mongo:
+    image: mongo:3.6
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo:/var/lib/mongo
+    networks:
+    - heylex-proxy
+    container_name: inox_mongo
+  inox-web:
+    image: thingregistry.com/inox-fe
+    restart: always
+    environment:
+    - VIRTUAL_HOST=${VIRTUAL_HOST}
+    - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
+    - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    networks:
+    - heylex-proxy
+    container_name: inox-web
+
+networks:
+  heylex-proxy:
+    external:
+      name: nginx-proxy
