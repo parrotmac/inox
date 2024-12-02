@@ -41,7 +41,7 @@
     "fbgraph": "^1.4.1",
     "lodash": "^4.17.21",
     "lusca": "^1.5.2",
-    "mongoose": "^5.7.5",
+    "mongoose": "^5.13.15",
     "mqtt": "^2.18.8",
     "node-fetch": "^2.6.1",
     "nodemailer": "^4.4.1",
